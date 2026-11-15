@@ -1,0 +1,28 @@
+# Render Blueprint: put nexora.js, package.json and this file in a GitHub repo, then
+# Render dashboard -> New -> Blueprint -> pick the repo.
+services:
+  - type: web
+    name: nexora
+    runtime: node
+    plan: starter              # needed for a persistent disk (free plan loses data on restart)
+    buildCommand: npm install
+    startCommand: node nexora.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
+      - key: DATA_DIR
+        value: /var/data
+      - key: ANTHROPIC_API_KEY
+        sync: false            # you type the value in the Render dashboard (keeps it secret)
+      # Optional, for video calls between different networks (a TURN relay):
+      # - key: TURN_URL
+      #   sync: false
+      # - key: TURN_USER
+      #   sync: false
+      # - key: TURN_PASS
+      #   sync: false
+    disk:
+      name: nexora-data
+      mountPath: /var/data
+      sizeGB: 1

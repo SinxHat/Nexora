@@ -1,0 +1,9 @@
+{
+  "name": "nexora",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NEXORA - chat, calls, live streams and a collaborative AI IDE in one Node file",
+  "main": "nexora.js",
+  "scripts": { "start": "node nexora.js" },
+  "engines": { "node": ">=22.13.0" }
+}
